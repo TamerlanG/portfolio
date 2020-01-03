@@ -1,42 +1,70 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
 import React from "react"
+import colors from "../themes/colors";
+import styled from "styled-components"
+import { Link } from "gatsby"
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
+const Header = () => (
+  <MainContainer>
+    <div>
+      <Title>Tamerlan Gudabayev</Title>
+      <Subtitle>Software Engineer</Subtitle>
     </div>
-  </header>
-)
+    <div>
+      <ul>
+        <ListItem>
+          <StyledLink to="/">
+            <h6>Home</h6>
+          </StyledLink>
+        </ListItem>
+        <ListItem>
+          <StyledLink to="/projects">
+            <h6>Projects</h6>
+          </StyledLink>
+        </ListItem>
+        <ListItem>
+          <StyledLink to="/">
+            <h6>Blog</h6>
+          </StyledLink>
+        </ListItem>
+        <ListItem>
+          <StyledLink to="/">
+            <h6>Videos</h6>
+          </StyledLink>
+        </ListItem>
+        <ListItem>
+          <StyledLink to="/contact">
+            <h6>Connect</h6>
+          </StyledLink>
+        </ListItem>
+      </ul>
+    </div>
+  </MainContainer>
+);
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
+export default Header;
 
-Header.defaultProps = {
-  siteTitle: ``,
-}
-
-export default Header
+const MainContainer = styled.header`
+    background: ${colors.WHITE};
+    margin-bottom: 1.45rem;
+    display: flex;
+    flex-flow: row;
+    margin: 0;
+    padding: 20px;
+    justify-content: space-between;
+`
+const Title = styled.h2`
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+`
+const Subtitle = styled.h6`
+  font-weight: 400;
+`
+const StyledLink = styled(props => <Link {...props} />)`
+  color: #000;
+`;
+const ListItem = styled.li`
+  list-style-type: none;
+  display: inline-block;
+  margin-right: 10px;
+`
